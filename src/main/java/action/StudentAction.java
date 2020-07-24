@@ -44,26 +44,26 @@ public class StudentAction extends ActionSupport {
 
     public void validateSave() {
         if (student.getId() == null || student.getId().isEmpty()) {
-            addFieldError("student.id", getText("Please enter id for student!"));
+            addFieldError("student.id", getText("Enter Student Id"));
         } else if (student.getId().length() != 7) {
-            addFieldError("student.id", getText("The id must be 7 characters."));
+            addFieldError("student.id", getText("The id must be 7 characters"));
         }
-        if (student.getSubjects() == null || student.getSubjects().isEmpty()) {
-            addFieldError("student.subjects", getText("Please enter name for subject!"));
+        if (student.getSubjectName() == null || student.getSubjectName().isEmpty()) {
+            addFieldError("student.subjectName", getText("Enter Subject Name"));
         }
         if (student.getNameStudent() == null || student.getNameStudent().isEmpty()) {
-            addFieldError("student.nameStudent", getText("Please enter name for student!"));
+            addFieldError("student.nameStudent", getText("Enter Student Name"));
         } else if (student.getNameStudent().length() < 10 && student.getNameStudent().length() > 30) {
-            addFieldError("student.nameStudent", getText("Name student between 10 and 30 characters!"));
+            addFieldError("student.nameStudent", getText("Student name is between 10 and 30 characters"));
         }
-        if (student.getPointLt() > 100 || student.getPointLt() < 0) {
-            addFieldError("student.pointLt", getText("Value of point Lt student between 0 and 100."));
+        if (student.getTheory() > 100 || student.getTheory() < 0) {
+            addFieldError("student.theory", getText("Value of Theory point is between 0 and 100."));
         }
-        if (student.getPointTh() > 15 | student.getPointTh() < 0) {
-            addFieldError("student.pointTh", getText("Value of point Th student between 0 and 15."));
+        if (student.getAsm() > 15 | student.getAsm() < 0) {
+            addFieldError("student.asm", getText("Value of Assignment point is between 0 and 15."));
         }
-        if (student.getPointAssignment() > 10 || student.getPointAssignment() < 0) {
-            addFieldError("student.pointAssignment", getText("Value of point assignment student between 0 and 10."));
+        if (student.getProj() > 10 || student.getProj() < 0) {
+            addFieldError("student.proj", getText("Value of Project point is between 0 and 10."));
         }
     }
 

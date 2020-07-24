@@ -5,19 +5,19 @@ import java.io.Serializable;
 
 @Entity
 @Table
-public class Student {
+public class Student implements Serializable {
     @Id
     private String id;
-    @Column(name = "subjects")
-    private String subjects;
+    @Column(name = "subjectName")
+    private String subjectName;
     @Column(name = "nameStudent")
     private String nameStudent;
-    @Column(name = "pointLt")
-    private int pointLt;
-    @Column(name = "pointTh")
-    private int pointTh;
-    @Column(name = "pointAssignment")
-    private int pointAssignment;
+    @Column(name = "asm")
+    private int asm;
+    @Column(name = "theory")
+    private int theory;
+    @Column(name = "proj")
+    private int proj;
     @Column(name = "createdAt")
     private long createdAt;
     @Column(name = "updatedAt")
@@ -31,12 +31,12 @@ public class Student {
         this.id = id;
     }
 
-    public String getSubjects() {
-        return subjects;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setSubjects(String subjects) {
-        this.subjects = subjects;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public String getNameStudent() {
@@ -47,28 +47,28 @@ public class Student {
         this.nameStudent = nameStudent;
     }
 
-    public int getPointLt() {
-        return pointLt;
+    public int getAsm() {
+        return asm;
     }
 
-    public void setPointLt(int pointLt) {
-        this.pointLt = pointLt;
+    public void setAsm(int asm) {
+        this.asm = asm;
     }
 
-    public int getPointTh() {
-        return pointTh;
+    public int getTheory() {
+        return theory;
     }
 
-    public void setPointTh(int pointTh) {
-        this.pointTh = pointTh;
+    public void setTheory(int theory) {
+        this.theory = theory;
     }
 
-    public int getPointAssignment() {
-        return pointAssignment;
+    public int getProj() {
+        return proj;
     }
 
-    public void setPointAssignment(int pointAssignment) {
-        this.pointAssignment = pointAssignment;
+    public void setProj(int proj) {
+        this.proj = proj;
     }
 
     public long getCreatedAt() {
@@ -90,13 +90,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String id, String subjects, String nameStudent, int pointLt, int pointTh, int pointAssignment, long createdAt, long updatedAt) {
+    public Student(String id, String subjectName, String nameStudent, int asm, int theory, int proj, long createdAt, long updatedAt) {
         this.id = id;
-        this.subjects = subjects;
+        this.subjectName = subjectName;
         this.nameStudent = nameStudent;
-        this.pointLt = pointLt;
-        this.pointTh = pointTh;
-        this.pointAssignment = pointAssignment;
+        this.asm = asm;
+        this.theory = theory;
+        this.proj = proj;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

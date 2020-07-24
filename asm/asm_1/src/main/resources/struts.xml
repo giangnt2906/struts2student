@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.action.extension" value=""/>
+    <constant name="struts.devMode" value="true"/>
+    <package name="asmstruts2" extends="struts-default">
+        <default-action-ref name="index"/>
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <action name="create-student" class="com.asm.action.StudentAction" method="createStudent">
+            <result name="input">StudentForm.jsp</result>
+        </action>
+
+        <action name="list-student" class="com.asm.action.StudentAction" method="listStudent">
+            <result name="success">StudentList.jsp</result>
+        </action>
+
+        <action name="saveOrUpdate-student" class="com.asm.action.StudentAction" method="saveOrUpdate">
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">StudentForm.jsp</result>
+            <result name="success" type="redirectAction">list-student</result>
+        </action>
+        
+        <action name="score" class="com.asm.action.ScoreAction" method="execute">
+            <result type="redirect" name="success">list.jsp</result>
+            <result name="input">score.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        <action name="list" class="com.asm.action.ListAction" method="execute">
+            <result name = "success">list.jsp</result>
+            <result name = "error">error.jsp</result>
+        </action>
+
+    </package>
+</struts>
