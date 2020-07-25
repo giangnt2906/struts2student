@@ -9,9 +9,8 @@ import javax.persistence.*;
 public class Score {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    private Long id;
+    @Column(name = "id_score")
+    private long id_score;
     private int theory; //ly thuyet
     private int asm; //thuc hanh
     private int proj; //btl
@@ -19,14 +18,11 @@ public class Score {
     //ten mon hoc
     private String subjectName;
 
-    private Long createdAt;
-    private Long updatedAt;
-
-    //cot id student primary key
-    private Long id_student;
+    private long createdAt;
+    private long updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_student")
     private Student student;
 
     //implement the equals and hashCode methods
@@ -34,19 +30,40 @@ public class Score {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Score )) return false;
-        return id != null && id.equals(((Score) o).getId());
+        return id_score != 0L && id_score == (((Score) o).getId_score());
+    }
+
+    //constructor
+    public Score(int theory, int asm, int proj, String subjectName, long createdAt, long updatedAt, Student student) {
+        this.theory = theory;
+        this.asm = asm;
+        this.proj = proj;
+        this.subjectName = subjectName;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.student = student;
+    }
+
+    //2
+    public Score(int theory, int asm, int proj, String subjectName, long createdAt, long updatedAt) {
+        this.theory = theory;
+        this.asm = asm;
+        this.proj = proj;
+        this.subjectName = subjectName;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     //getter setter, constructor 0 bien so
     public Score() {
     }
 
-    public Long getId() {
-        return id;
+    public long getId_score() {
+        return id_score;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_score(long id_score) {
+        this.id_score = id_score;
     }
 
     public int getTheory() {
@@ -81,19 +98,19 @@ public class Score {
         this.subjectName = subjectName;
     }
 
-    public Long getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Long createdAt) {
+    public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Long getUpdatedAt() {
+    public long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Long updatedAt) {
+    public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -103,13 +120,5 @@ public class Score {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public Long getId_student() {
-        return id_student;
-    }
-
-    public void setId_student(Long id_student) {
-        this.id_student = id_student;
     }
 }

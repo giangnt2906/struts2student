@@ -16,7 +16,7 @@ public class StudentAction extends ActionSupport {
 
     //save or update student
     public String saveOrUpdate() {
-        if (student.getId() == null || student.getId() == 0L) {
+        if (student.getId_student() == 0L) {
             studentService.insertStudent(student);
         } else {
             //chua co update

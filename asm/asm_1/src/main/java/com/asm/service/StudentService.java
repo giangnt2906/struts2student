@@ -3,6 +3,7 @@ package com.asm.service;
 import com.asm.dao.StudentDao;
 import com.asm.entity.Student;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class StudentService {
@@ -13,7 +14,7 @@ public class StudentService {
     }
 
     public void updateStudent(Student student) {
-
+        dao.insert(student);
     }
 
     public void deleteStudent(long id) {
@@ -25,6 +26,10 @@ public class StudentService {
     }
 
     public void insertStudent(Student student) {
+        long longMillisTime = new Timestamp(System.currentTimeMillis()).getTime();
+        if (student.getId_student() == 0L) {
+            student.setId_student(longMillisTime);
+        }
         dao.insert(student);
     }
 }

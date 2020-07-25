@@ -11,9 +11,8 @@ import java.util.List;
 public class Student {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    private Long id;
+    @Column(name = "id_student")
+    private long id_student;
     private String studentName;
     private String studentId;
 
@@ -33,16 +32,22 @@ public class Student {
         score.setStudent(null);
     }
 
+    //constructor
+    public Student(String studentName, String studentId) {
+        this.studentName = studentName;
+        this.studentId = studentId;
+    }
+
     //getter and setter constructor 0 bien so
     public Student() {
     }
 
-    public Long getId() {
-        return id;
+    public long getId_student() {
+        return id_student;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_student(long id_student) {
+        this.id_student = id_student;
     }
 
     public String getStudentName() {
