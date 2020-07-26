@@ -1,45 +1,43 @@
 package com.asm.dao;
 
-import com.asm.entity.Student;
+import com.asm.entity.Score;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class StudentDao {
+public class ScoreDao {
     private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
     private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    public void update(Student student) {
-
-    }
-
-    public void insert(Student student) {
+    public void update(Score score) {
         entityManager.getTransaction().begin();
-        entityManager.persist(student);
+        entityManager.merge(score);
         entityManager.getTransaction().commit();
     }
 
-    public boolean delete(long id) {
+    public void insert(Score score) {
         entityManager.getTransaction().begin();
-        Student student = entityManager.find(Student.class, id);
-        if (student != null) {
-            entityManager.remove(student);
+        entityManager.persist(score);
+        entityManager.getTransaction().commit();
+    }
+
+    public void delete(long id) {
+        entityManager.getTransaction().begin();
+        Score score = entityManager.find(Score.class, id);
+        if (score != null) {
+            entityManager.remove(score);
             entityManager.getTransaction().commit();
-            entityManager.close();
-            return true;
         }
-        entityManager.close();
-        return false;
     }
 
-    public List<Student> getAllStudents() {
-        return entityManager.createQuery("SELECT c FROM Student c", Student.class).getResultList();
+    public List<Score> getAllScore() {
+        return entityManager.createQuery("SELECT c FROM Score c", Score.class).getResultList();
     }
 
-    public Student getStudentById(long id) {
-        return entityManager.find(Student.class, id);
+    public Score getScoreById(long id) {
+        return entityManager.find(Score.class, id);
     }
 
     public void close() {

@@ -16,7 +16,7 @@ public class Student {
     private String studentName;
     private String studentId;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = {CascadeType.ALL},
     orphanRemoval = true,
     mappedBy = "student")
     private List<Score> scores = new ArrayList<Score>();

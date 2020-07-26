@@ -41,6 +41,9 @@
                     listValue="studentName"--%>
     </div>
     <div>
+        <s:hidden name="score.id_score" value="%{score.id_score}"/>
+    </div>
+    <div>
         <s:submit value="Submit"/>
         <s:reset value="Reset"/>
     </div>

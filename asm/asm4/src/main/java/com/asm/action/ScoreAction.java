@@ -24,6 +24,22 @@ public class ScoreAction extends ActionSupport {
     //private List<Student> studentList = new ArrayList<Student>();
     //private List<Long> studentListId = new ArrayList<Long>();
 
+    //get Score by Id_score
+    public String getScoreById() {
+        score = scoreService.getScoreById(score.getId_score());
+        return SUCCESS;
+    }
+
+    //delete score
+    public String deleteScore() {
+        //giai quyet score == null
+        //...
+        student.removeScore(score);
+        scoreService.deleteScore(score.getId_score());
+        studentService.updateStudent(student);
+        return SUCCESS;
+    }
+
     //save or update score
     public String saveOrUpdate() {
         student = studentService.getStudentById(id_student);
@@ -40,8 +56,18 @@ public class ScoreAction extends ActionSupport {
             //scoreService.insertScore(score);
             studentService.updateStudent(student);
         } else {
-            //chua co update
-            scoreService.updateScore(score);
+            //update => tim va remove score_old, them score_new
+            List<Score> student_list_score = student.getScores();
+            Score score_to_remove = new Score();
+            for (Score score_old : student_list_score) {
+                if (score_old.getId_score() == score.getId_score())
+                    score_to_remove = score_old;
+            }
+            student.removeScore(score_to_remove);
+            scoreService.modifyScore(score);
+            student.addScore(score);
+            //scoreService.updateScore(score);
+            studentService.updateStudent(student);
         }
         return SUCCESS;
     }
@@ -67,7 +93,7 @@ public class ScoreAction extends ActionSupport {
     }
 
     public long getId_student() {
-        return id_student;
+        return student.getId_student();
     }
 
     public void setId_student(long id_student) {

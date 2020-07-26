@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.action.extension" value=""/>
+    <constant name="struts.devMode" value="true"/>
+    <package name="default" extends="struts-default">
+        <default-action-ref name="index"/>
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <!--create student-->
+        <action name="create-student" class="com.asm.action.StudentAction" method="createStudent">
+            <result name="input">/StudentForm.jsp</result>
+        </action>
+        <action name="sou-student" class="com.asm.action.StudentAction" method="saveOrUpdate">
+            <result name="success" type="redirectAction">list-student</result>
+            <result name="input">/StudentForm.jsp</result>
+        </action>
+        <!--list student-->
+        <action name="list-student" class="com.asm.action.StudentAction" method="listStudent">
+            <result name="success">/StudentList.jsp</result>
+        </action>
+        <!--edit student trung vs create-student-->
+        <action name="update-student" class="com.asm.action.StudentAction" method="createStudent">
+            <result name="input">/StudentForm.jsp</result>
+        </action>
+        <!--delete student-->
+        <action name="delete-student" class="com.asm.action.StudentAction" method="deleteStudent">
+            <result name="success" type="redirectAction">list-student</result>
+        </action>
+        <!--goTo-delete-student-page-->
+        <action name="goTo-delete-student-page" class="com.asm.action.StudentAction" method="getStudentById">
+            <result name="success">/StudentDelete.jsp</result>
+        </action>
+        <!--goTo-detail-student-page to check scores-->
+        <action name="goTo-detail-student-page" class="com.asm.action.StudentAction" method="getStudentById">
+            <result name="success">/StudentDetail.jsp</result>
+        </action>
+
+        <!--score info page-->
+        <!--<action name="update-score" class="com.asm.action.ScoreAction" method="getScoreById">
+            <result name="success">/ScoreForm.jsp</result>
+        </action>-->
+        <action name="update-score" class="com.asm.action.ScoreAction" method="createScore">
+            <result name="input">/ScoreFormUpdate.jsp</result>
+        </action>
+        <!--update-->
+        <action name="goTo-delete-score-page" class="com.asm.action.ScoreAction" method="getScoreById">
+            <result name="success">/ScoreDetail.jsp</result>
+        </action>
+        <!--delete-->
+        <action name="delete-score" class="com.asm.action.ScoreAction" method="deleteScore">
+            <result name="success" type="redirectAction">list-student</result>
+        </action>
+
+        <!--create score-->
+        <action name="create-score" class="com.asm.action.ScoreAction" method="createScore">
+            <result name="input">/ScoreForm.jsp</result>
+        </action>
+        <action name="sou-score" class="com.asm.action.ScoreAction" method="saveOrUpdate">
+            <result name="success" type="redirectAction">list-student</result>
+            <result name="input">/ScoreForm.jsp</result>
+        </action>
+        <action name="sou-score-2" class="com.asm.action.ScoreAction" method="saveOrUpdate">
+            <result name="success" type="redirectAction">list-student</result>
+            <result name="input">/ScoreFormUpdate.jsp</result>
+        </action>
+        <!--list score khong can thiet-->
+        <action name="list-score" class="com.asm.action.ScoreAction" method="listScore">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+</struts>

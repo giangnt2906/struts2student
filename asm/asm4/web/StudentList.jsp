@@ -39,15 +39,19 @@
             background-color: #353baf;
             color: white;
         }
+
+        .container {
+            margin: 30px;
+        }
     </style>
 </head>
-<body>
+<body class="container">
 <h1>Student List</h1>
 <a href="/create-student">Add New</a>
 <br>
 <table id="students">
     <tr>
-        <th>Id</th>
+        <%--<th>Id</th>--%>
         <th>Student Name</th>
         <th>Student Id</th>
         <th>Subject Name</th>
@@ -56,11 +60,14 @@
         <th>Point Project</th>
         <th>Created At</th>
         <th>Updated At</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Detail</th>
     </tr>
 
     <s:iterator value="studentList">
     <tr>
-        <td><s:property value="id_student"/></td>
+        <%--<td><s:property value="id_student"/></td>--%>
         <td><s:property value="studentName"/></td>
         <td><s:property value="studentId"/></td>
 
@@ -100,9 +107,36 @@
                 <br>
             </s:iterator>
         </td>
+        <td>
+            <s:url action="update-student" var="urlGetIdUpdate">
+                <s:param name="student.id_student" value="id_student">
+                    <%--<s:property value="id_student"/>--%>
+                </s:param>
+            </s:url>
+            <a href="<s:property value="#urlGetIdUpdate"/>">Edit</a>
+        </td>
+
+        <td>
+            <s:url action="goTo-delete-student-page" var="urlGetIdDelete">
+                <s:param name="student.id_student" value="id_student">
+                    <%--<s:property value="id_student"/>--%>
+                </s:param>
+            </s:url>
+            <a href="<s:property value="#urlGetIdDelete"/>">Delete</a>
+        </td>
+
+        <td>
+            <s:url action="goTo-detail-student-page" var="urlGetIdDetail">
+                <s:param name="student.id_student" value="id_student">
+                        <%--<s:property value="id_student"/>--%>
+                </s:param>
+            </s:url>
+            <a href="<s:property value="#urlGetIdDetail"/>">Detail</a>
+        </td>
 
     </tr>
     </s:iterator>
+</table>
 
     <br>
     <a href="/index">Back</a>

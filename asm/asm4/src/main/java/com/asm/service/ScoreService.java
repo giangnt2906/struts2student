@@ -14,7 +14,14 @@ public class ScoreService {
     }
 
     public void updateScore(Score score) {
-
+        //update
+        Score score_old = dao.getScoreById(score.getId_score());
+        score_old.setSubjectName(score.getSubjectName());
+        score_old.setTheory(score.getTheory());
+        score_old.setAsm(score.getAsm());
+        score_old.setProj(score.getProj());
+        //persist
+        dao.update(score);
     }
 
     public void deleteScore(long id) {
@@ -36,6 +43,8 @@ public class ScoreService {
             score.setCreatedAt(longMillisTime);
             score.setUpdatedAt(longMillisTime);
         }
+        //update score
+        score.setCreatedAt(score.getId_score());
         score.setUpdatedAt(longMillisTime);
     }
 }

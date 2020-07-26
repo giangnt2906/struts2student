@@ -14,7 +14,12 @@ public class StudentService {
     }
 
     public void updateStudent(Student student) {
-        dao.insert(student);
+        //update name va ma so sinh vien
+        Student student_old = dao.getStudentById(student.getId_student());
+        student_old.setStudentName(student.getStudentName());
+        student_old.setStudentId(student.getStudentId());
+        //persist
+        dao.update(student_old);
     }
 
     public void deleteStudent(long id) {

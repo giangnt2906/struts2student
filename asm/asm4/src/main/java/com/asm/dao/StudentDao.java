@@ -1,45 +1,43 @@
 package com.asm.dao;
 
-import com.asm.entity.Score;
+import com.asm.entity.Student;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class ScoreDao {
+public class StudentDao {
     private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
     private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    public void update(Score score) {
-
-    }
-
-    public void insert(Score score) {
+    public void update(Student student) {
         entityManager.getTransaction().begin();
-        entityManager.persist(score);
+        entityManager.merge(student);
         entityManager.getTransaction().commit();
     }
 
-    public boolean delete(long id) {
+    public void insert(Student student) {
         entityManager.getTransaction().begin();
-        Score score = entityManager.find(Score.class, id);
-        if (score != null) {
-            entityManager.remove(score);
+        entityManager.persist(student);
+        entityManager.getTransaction().commit();
+    }
+
+    public void delete(long id) {
+        entityManager.getTransaction().begin();
+        Student student = entityManager.find(Student.class, id);
+        if (student != null) {
+            entityManager.remove(student);
             entityManager.getTransaction().commit();
-            entityManager.close();
-            return true;
         }
-        entityManager.close();
-        return false;
     }
 
-    public List<Score> getAllScore() {
-        return entityManager.createQuery("SELECT c FROM Score c", Score.class).getResultList();
+    public List<Student> getAllStudents() {
+        return entityManager.createQuery("SELECT c FROM Student c", Student.class).getResultList();
     }
 
-    public Score getScoreById(long id) {
-        return entityManager.find(Score.class, id);
+    public Student getStudentById(long id) {
+        return entityManager.find(Student.class, id);
     }
 
     public void close() {

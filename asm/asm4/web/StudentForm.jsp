@@ -22,6 +22,9 @@
         <s:textfield name="student.studentId" key="Student Id"/>
     </div>
     <div>
+        <s:hidden name="student.id_student" value="%{student.id_student}"/>
+    </div>
+    <div>
         <s:submit value="Submit"/>
         <s:reset value="Reset"/>
     </div>

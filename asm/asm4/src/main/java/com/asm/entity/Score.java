@@ -32,6 +32,10 @@ public class Score {
         if (!(o instanceof Score )) return false;
         return id_score != 0L && id_score == (((Score) o).getId_score());
     }
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 
     //constructor
     public Score(int theory, int asm, int proj, String subjectName, long createdAt, long updatedAt, Student student) {
